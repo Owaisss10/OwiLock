@@ -36,6 +36,7 @@ class LockVC: UIViewController {
     @IBOutlet weak var btn9: UIButton!
     @IBOutlet weak var btn0: UIButton!
     @IBOutlet weak var btnBiometric: UIButton!
+    @IBOutlet weak var btnBackspace: UIButton!
     
     // MARK: View Loads
     override func viewDidLoad() {
@@ -93,9 +94,16 @@ class LockVC: UIViewController {
             {
                 self.alert(message: "Implementation coming soon...", title: "Forgot Password !")
             }
+            else if sender.tag == 12 // Backspace
+            {
+                //print("Before Removing: \t \(self.enteredPassword)")
+                _ = self.enteredPassword.removeLast()
+                //print("After Removing: \t \(self.enteredPassword)")
+        }
             
             if self.enteredPassword.count == 0
             {
+                btnBackspace.isHidden = true
                 view1.backgroundColor = UIColor.clear
                 view2.backgroundColor = UIColor.clear
                 view3.backgroundColor = UIColor.clear
@@ -103,6 +111,7 @@ class LockVC: UIViewController {
             }
             else if self.enteredPassword.count == 1
             {
+                btnBackspace.isHidden = false
                 view1.backgroundColor = UIColor.white
                 view2.backgroundColor = UIColor.clear
                 view3.backgroundColor = UIColor.clear
@@ -110,6 +119,7 @@ class LockVC: UIViewController {
             }
             else if self.enteredPassword.count == 2
             {
+                btnBackspace.isHidden = false
                 view1.backgroundColor = UIColor.white
                 view2.backgroundColor = UIColor.white
                 view3.backgroundColor = UIColor.clear
@@ -117,6 +127,7 @@ class LockVC: UIViewController {
             }
             else if self.enteredPassword.count == 3
             {
+                btnBackspace.isHidden = false
                 view1.backgroundColor = UIColor.white
                 view2.backgroundColor = UIColor.white
                 view3.backgroundColor = UIColor.white
@@ -124,6 +135,7 @@ class LockVC: UIViewController {
             }
             else if self.enteredPassword.count == 4
             {
+                btnBackspace.isHidden = false
                 view1.backgroundColor = UIColor.white
                 view2.backgroundColor = UIColor.white
                 view3.backgroundColor = UIColor.white
@@ -164,11 +176,15 @@ class LockVC: UIViewController {
             self.view2.backgroundColor = UIColor.clear
             self.view3.backgroundColor = UIColor.clear
             self.view4.backgroundColor = UIColor.clear
+            self.btnBackspace.isHidden = true
         }
     }
-
+    
+    
     func configureUI()
     {
+        self.resetFields()
+        btnBackspace.isHidden = true
         // setting the corner radius
         view1.layer.cornerRadius = view1.frame.height / 2
         view2.layer.cornerRadius = view2.frame.height / 2
@@ -201,6 +217,7 @@ class LockVC: UIViewController {
         btn9.layer.cornerRadius = btn9.frame.height / 2
         btn0.layer.cornerRadius = btn0.frame.height / 2
         btnBiometric.layer.cornerRadius = btnBiometric.frame.height / 2
+        btnBackspace.layer.cornerRadius = btnBiometric.frame.height / 2
         
         
         btn1.layer.borderColor = UIColor.white.cgColor
@@ -214,6 +231,7 @@ class LockVC: UIViewController {
         btn9.layer.borderColor = UIColor.white.cgColor
         btn0.layer.borderColor = UIColor.white.cgColor
         btnBiometric.layer.borderColor = UIColor.white.cgColor
+        btnBackspace.layer.borderColor = UIColor.white.cgColor
         
         btn1.layer.borderWidth = 1
         btn2.layer.borderWidth = 1
@@ -226,6 +244,7 @@ class LockVC: UIViewController {
         btn9.layer.borderWidth = 1
         btn0.layer.borderWidth = 1
         btnBiometric.layer.borderWidth = 1
+        btnBackspace.layer.borderWidth = 1
         
         btn1.clipsToBounds = true
         btn2.clipsToBounds = true
@@ -238,6 +257,7 @@ class LockVC: UIViewController {
         btn9.clipsToBounds = true
         btn0.clipsToBounds = true
         btnBiometric.clipsToBounds = true
+        btnBackspace.clipsToBounds = true
         
     } // ConfigureUI ends
 } // Class LockVC ends
